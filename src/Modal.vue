@@ -124,7 +124,8 @@ export default {
       validator (value) {
         return value >= 0 && value <= 1
       }
-    }
+    },
+    container: {}
   },
   components: {
     Resizer
@@ -150,6 +151,8 @@ export default {
         heightType: 'px',
         renderedHeight: 0
       },
+
+      parentContainer: undefined,
 
       window: {
         width: 0,
@@ -188,6 +191,12 @@ export default {
           })
         }, this.delay)
       }
+    },
+    container (value) {
+      console.log('watch', value)
+      this.parentContainer = value || Modal.container
+      console.log('watch.parentContainer', this.parentContainer)
+      this.onWindowResize()
     }
   },
   created () {
@@ -382,6 +391,8 @@ export default {
       modal.widthType = width.type
       modal.height = height.value
       modal.heightType = height.type
+
+      this.parentContainer = this.container || Modal.container
     },
 
     onEscapeKeyUp (event) {
@@ -391,8 +402,8 @@ export default {
     },
 
     onWindowResize () {
-      this.window.width = window.innerWidth
-      this.window.height = window.innerHeight
+      this.window.width = this.parentContainer === window ? this.parentContainer.innerWidth : this.parentContainer.clientWidth
+      this.window.height = this.parentContainer === window ? this.parentContainer.innerHeight : this.parentContainer.clientHeight
     },
 
     /**

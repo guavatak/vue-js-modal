@@ -17,6 +17,7 @@ const Plugin = {
     this.event = new Vue()
     this.dynamicContainer = null
     this.componentName = options.componentName || defaultComponentName
+    this.container = options.container || window
     /**
      * Plugin API
      */

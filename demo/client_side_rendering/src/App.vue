@@ -125,6 +125,20 @@
       Dynamic: Component Modal with modal params
     </button>
   </div>
+  <div>
+    <button
+      class="btn green"
+      @click="$modal.show('demo-container')">
+      Demo: Dog Profile photo - in container
+    </button>
+    <div class="container-sample">
+      <div class="content" ref="modalContainer">
+        content
+
+        <demo-container-modal :container="$refs.modalContainer"/>
+      </div>
+    </div>
+  </div>
 </div>
 </template>
 
@@ -133,6 +147,7 @@ import DemoErrorModal       from './components/modals/DemoErrorModal.vue'
 import DemoFocusModal       from './components/modals/InputFocusModal.vue'
 import DemoLoginModal       from './components/modals/DemoLoginModal.vue'
 import DemoDogProfileModal  from './components/modals/DogProfileModal.vue'
+import DemoContainerModal   from './components/modals/DemoContainerModal.vue'
 import DemoConditionalModal from './components/modals/ConditionalModal.vue'
 import DemoSizeModal        from './components/modals/SizeModal.vue'
 import CustomComponentModal from './components/modals/CustomComponentModal.vue'
@@ -144,6 +159,7 @@ export default {
     DemoFocusModal,
     DemoLoginModal,
     DemoDogProfileModal,
+    DemoContainerModal,
     DemoConditionalModal,
     DemoSizeModal
   },
@@ -152,10 +168,12 @@ export default {
       resizable: false,
       adaptive: false,
       draggable: false,
-      canBeShown: false
+      canBeShown: false,
+      container: null
     }
   },
   created () {
+    this.container = this.$refs.modalContainer
     setInterval(() => {
       this.canBeShown = !this.canBeShown
     }, 5000)
@@ -331,7 +349,7 @@ button.btn {
   border-radius: 3px;
 
   color: white;
-  
+
   box-shadow: 0 4px 8px rgba(#20a0ff, .3);
   background: #4db3ff;
 
@@ -385,4 +403,23 @@ button.btn {
     padding: 10px;
   }
 }
+
+div.container-sample {
+  border: 1px solid #999;
+  height: 500px;
+  .content {
+    display: table;
+    table-layout: fixed;
+    z-index: 999;
+    top: 600px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin-left: 220px;
+    margin-right: 10px;
+    background-color: #333;
+    height: 440px;
+  }
+}
+
 </style>
