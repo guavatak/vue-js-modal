@@ -445,8 +445,7 @@
                     }, this.delay));
                 },
                 container: function(value) {
-                    console.log("watch", value), this.parentContainer = value || _index2.default.container, 
-                    console.log("watch.parentContainer", this.parentContainer), this.onWindowResize();
+                    this.parentContainer = value || _index2.default.container, this.onWindowResize();
                 }
             },
             created: function() {
@@ -528,7 +527,7 @@
                     27 === event.which && this.visible && this.$modal.hide(this.name);
                 },
                 onWindowResize: function() {
-                    console.log("this.parentContainer", this.parentContainer), this.window.width = this.parentContainer === window ? this.parentContainer.innerWidth : this.parentContainer.clientWidth, 
+                    this.window.width = this.parentContainer === window ? this.parentContainer.innerWidth : this.parentContainer.clientWidth, 
                     this.window.height = this.parentContainer === window ? this.parentContainer.innerHeight : this.parentContainer.clientHeight;
                 },
                 genEventObject: function(params) {
