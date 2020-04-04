@@ -193,9 +193,7 @@ export default {
       }
     },
     container (value) {
-      console.log('watch', value)
       this.parentContainer = value || Modal.container
-      console.log('watch.parentContainer', this.parentContainer)
       this.onWindowResize()
     }
   },
